@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dokter")
 
-class Dokter (
+data class Dokter (
     @PrimaryKey
     val id :String,
     val nama :String,
