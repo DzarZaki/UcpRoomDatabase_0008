@@ -22,6 +22,7 @@ import com.example.ucp2.data.entity.Dokter
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.dokter.HomeDokterViewModel
 import com.example.ucp2.ui.costumwidget.TopAppBar
+import com.example.ucp2.ui.theme.SpesialisWarna
 
 @Composable
 fun HomeDokterView(
@@ -142,11 +143,14 @@ fun HomeDokterView(
 
 @Composable
 fun CardDokter(dokter: Dokter, modifier: Modifier = Modifier) {
+    // Ambil warna berdasarkan spesialis, default ke warna abu-abu jika spesialis tidak ditemukan
+    val warnaSpesialis = SpesialisWarna[dokter.spesialis] ?: Color.Gray
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF7F7F7))
+        colors = CardDefaults.cardColors(containerColor = warnaSpesialis)
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -155,27 +159,31 @@ fun CardDokter(dokter: Dokter, modifier: Modifier = Modifier) {
             Icon(
                 imageVector = Icons.Default.Person,
                 contentDescription = "Profile Icon",
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(48.dp),
+                tint = Color.White // Icon berwarna putih agar kontras dengan latar belakang
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column {
                 Text(
                     text = "drg. ${dokter.nama}",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
+                    fontSize = 18.sp,
+                    color = Color.White // Teks utama berwarna putih
                 )
                 Text(
                     text = dokter.spesialis,
                     fontSize = 14.sp,
-                    color = Color.Blue
+                    color = Color.White // Teks spesialis berwarna putih
                 )
                 Text(
                     text = dokter.klinik,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = Color.White
                 )
                 Text(
                     text = dokter.jamkerja,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = Color.White
                 )
             }
         }
