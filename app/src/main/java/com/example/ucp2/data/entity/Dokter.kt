@@ -13,5 +13,4 @@ data class Dokter (
     val klinik :String,
     val nohp :String,
     val jamkerja :String,
-    val color: String = "#FFFFFF" // Warna default putih
 )

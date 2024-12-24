@@ -27,6 +27,7 @@ abstract class SehatDatabase : RoomDatabase() {
                     SehatDatabase::class.java, // Class database
                     "SehatDatabase" // Nama database
                 )
+                    .fallbackToDestructiveMigration() // Menangani perubahan skema secara destruktif
                     .build().also { Instance = it }
             }
         }
