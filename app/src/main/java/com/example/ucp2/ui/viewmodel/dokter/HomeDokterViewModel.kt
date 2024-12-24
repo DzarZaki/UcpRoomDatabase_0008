@@ -16,14 +16,14 @@ import kotlinx.coroutines.flow.stateIn
 class HomeDokterViewModel(
     private val repositoryDokter: RepositoryDokter // Repositori untuk mengakses data Dokter
 ) : ViewModel() {
-
+//
     val homeUiState: StateFlow<HomeUiState> = repositoryDokter.getAllDokter() // Mengambil data Dokter dari repository
         .filterNotNull()
         .map {
             HomeUiState(
                 listDokter = it.toList(),
                 isLoading = false
-            )
+                          )
         }
         .onStart {
             emit(HomeUiState(isLoading = true))
@@ -39,7 +39,7 @@ class HomeDokterViewModel(
                 )
             )
         }
-        .stateIn(
+        .stateIn(//
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = HomeUiState(isLoading = true)
